@@ -34,8 +34,9 @@ ruby bin/bulk_publisher.rb start
 
 `options`
 ```
--t (integer) #thread count. (default 5)
--P (string)  #pid file path.
+-t (integer) # thread count. (default 5)
+-P (string)  # pid file path.
+-Q (string)  # queue name you publish messages to.
 ```
 
 ##MEMO

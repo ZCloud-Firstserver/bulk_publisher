@@ -23,6 +23,7 @@ class BulkPublisher::Publisher
   def initialize( options )
     @message_count = options["message_count"]
     @options = options
+    @queue_name = options["queue_name"]
     @routing_key = options["routing_key"]
     self.class.published_count = 0
     self.class.error_count = 0
@@ -38,7 +39,7 @@ class BulkPublisher::Publisher
     conn.start
 
     ch = conn.create_channel
-    q  = ch.queue(@routing_key)
+    q = ch.queue(@queue_name)
 
     #runメソッドが呼ばれるのを待つ
     until ready?

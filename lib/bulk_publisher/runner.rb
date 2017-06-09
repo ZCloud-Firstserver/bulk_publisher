@@ -10,6 +10,9 @@ class BulkPublisher::Runner < Thor
   option :message_count,                  type: :numeric, aliases: '-m', desc: "message count that number of per thread"
   option :connection_count,   default: 5, type: :numeric, aliases: '-c', desc: "connection count"
   option :pid_file,                       type: :string,  aliases: '-P', desc: "pid file name."
+  option :queue_name,                     type: :string,  aliases: '-Q', desc: "queue name"
+
+
   def start
     puts "Starting bulk_publisher process."
 
@@ -37,8 +40,9 @@ class BulkPublisher::Runner < Thor
     end
 
     if options
-      @params["connection_count"]  = options["connection_count"]
-      @params["message_count"]     = options["message_count"]
+      @params["connection_count"] = options["connection_count"]
+      @params["message_count"] = options["message_count"]
+      @params["queue_name"] = options["queue_name"]
     end
     @params
   end
@@ -49,5 +53,3 @@ class BulkPublisher::Runner < Thor
     hash
   end
 end
-
-
