@@ -24,7 +24,7 @@ bundle installed
 
 `commands`
 ```
-ruby bin/bulk_publisher.rb start
+ruby bin/bulk_publisher.rb start -m 1000 -Q myqueue
 ```
 
 `require_param`
