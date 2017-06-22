@@ -6,11 +6,12 @@ class BulkPublisher::Runner < Thor
   $0 = "BulkPublisher - #{::BulkPublisher::Version::STRING}"
 
   desc "start", "Run the bulk_publisher"
-  option :daemonize,                      type: :boolean, aliases: '-d', desc: "Running as a daemon"
-  option :message_count,                  type: :numeric, aliases: '-m', desc: "message count that number of per thread"
-  option :connection_count,   default: 5, type: :numeric, aliases: '-c', desc: "connection count"
-  option :pid_file,                       type: :string,  aliases: '-P', desc: "pid file name."
-  option :queue_name,                     type: :string,  aliases: '-Q', desc: "queue name"
+  option :daemonize,                    type: :boolean, aliases: '-d', desc: "Running as a daemon"
+  option :message_count,                type: :numeric, aliases: '-m', desc: "message count that number of per thread"
+  option :connection_count, default: 5, type: :numeric, aliases: '-c', desc: "connection count"
+  option :pid_file,                     type: :string,  aliases: '-P', desc: "pid file name."
+  option :queue_name,                   type: :string,  aliases: '-Q', desc: "queue name"
+  option :verify_peer,  default: false, type: :boolean, aliases: '-p', desc: "verify peer"
 
 
   def start
@@ -41,8 +42,9 @@ class BulkPublisher::Runner < Thor
 
     if options
       @params["connection_count"] = options["connection_count"]
-      @params["message_count"] = options["message_count"]
-      @params["queue_name"] = options["queue_name"]
+      @params["message_count"]    = options["message_count"]
+      @params["queue_name"]       = options["queue_name"]
+      @params["verify_peer"]      = options["verify_peer"]
     end
     @params
   end
