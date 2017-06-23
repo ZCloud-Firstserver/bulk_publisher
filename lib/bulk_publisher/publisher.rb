@@ -32,7 +32,6 @@ class BulkPublisher::Publisher
   def conn
     options = @options.dup
     options = symbolized_keys(options)
-    p options
     @conn ||= Bunny.new(options)
   end
 
