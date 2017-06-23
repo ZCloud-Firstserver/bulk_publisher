@@ -22,9 +22,9 @@ class BulkPublisher::Publisher
 
   def initialize( options )
     @message_count = options["message_count"]
-    @options = options
-    @queue_name = options["queue_name"]
-    @routing_key = options["routing_key"]
+    @options       = options
+    @queue_name    = options["queue_name"]
+    @routing_key   = options["routing_key"]
     self.class.published_count = 0
     self.class.error_count = 0
   end
@@ -32,7 +32,7 @@ class BulkPublisher::Publisher
   def conn
     options = @options.dup
     options = symbolized_keys(options)
-    @conn ||= Bunny.new( options )
+    @conn ||= Bunny.new(options)
   end
 
   def reserve
